@@ -13,7 +13,7 @@ const integrations = [
 
 export default function IntegrationsSection() {
   return (
-    <section className="py-24 px-6 bg-[var(--bg-primary)] border-t border-[var(--border-color)]">
+    <section id="integrations" className="py-24 px-6 bg-[var(--bg-primary)] border-t border-[var(--border-color)]">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Powered by Composio & Groq</h2>
         <p className="text-[var(--text-secondary)] max-w-2xl mx-auto mb-16">

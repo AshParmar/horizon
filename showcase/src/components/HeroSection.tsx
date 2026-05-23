@@ -5,7 +5,7 @@ import { Award, ArrowRight, Code } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 bg-dot-pattern opacity-30 z-0"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-blue-500/10 blur-[120px] rounded-full z-0 pointer-events-none"></div>
