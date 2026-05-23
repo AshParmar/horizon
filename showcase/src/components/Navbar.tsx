@@ -108,7 +108,7 @@ export default function Navbar() {
           {/* Github Link / Mobile Toggle */}
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/AshParmar/horizon-latex"
+              href="https://github.com/AshParmar/horizon"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border-color)] bg-white/5 hover:bg-white/10 transition-colors text-sm font-medium"
@@ -150,7 +150,7 @@ export default function Navbar() {
               </button>
             ))}
             <a
-              href="https://github.com/AshParmar/horizon-latex"
+              href="https://github.com/AshParmar/horizon"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 flex items-center gap-3 text-xl font-medium text-gray-400 py-4 border-t border-gray-800"

@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="text-sm text-[var(--text-tertiary)] flex flex-col md:flex-row gap-4 items-center">
           <span>Best Idea Award — Composio Hackathon</span>
           <span className="hidden md:inline">•</span>
-          <a href="https://github.com/AshParmar/horizon-latex" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+          <a href="https://github.com/AshParmar/horizon" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
             GitHub Repository
           </a>
         </div>

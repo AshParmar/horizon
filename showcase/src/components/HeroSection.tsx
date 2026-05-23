@@ -53,7 +53,7 @@ export default function HeroSection() {
             See How It Works
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
-          <a href="https://github.com/AshParmar/horizon-latex" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3.5 glass-panel text-white font-medium rounded-lg hover:bg-white/5 transition-colors">
+          <a href="https://github.com/AshParmar/horizon" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3.5 glass-panel text-white font-medium rounded-lg hover:bg-white/5 transition-colors">
             <Code className="w-5 h-5" />
             View Source
           </a>
