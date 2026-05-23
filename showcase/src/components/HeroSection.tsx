@@ -66,24 +66,14 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="w-full max-w-4xl mx-auto aspect-video rounded-xl glow-box glass-panel overflow-hidden p-2"
         >
-          <a 
-            href="https://drive.google.com/drive/search?q=.mp4" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-full h-full bg-black rounded-lg flex items-center justify-center relative overflow-hidden group block"
-          >
-            {/* The user mentioned having a recording. This is a placeholder for the iframe/video tag */}
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-30 group-hover:opacity-40 transition-opacity duration-500 scale-100 group-hover:scale-105"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-            
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-[var(--accent-primary)]/20 backdrop-blur-md flex items-center justify-center border border-[var(--accent-primary)]/40 mb-4 group-hover:bg-[var(--accent-primary)]/40 group-hover:scale-110 transition-all duration-300 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
-                <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-white border-b-[12px] border-b-transparent ml-2"></div>
-              </div>
-              <span className="font-semibold text-lg text-white mb-1">Watch the Automation Demo</span>
-              <span className="font-mono text-sm text-[var(--accent-primary)]">View on Google Drive</span>
-            </div>
-          </a>
+          <div className="w-full h-full bg-black rounded-lg flex items-center justify-center relative overflow-hidden">
+            <iframe 
+              src="https://drive.google.com/file/d/16FhRULImue3iqeGql0NhtgweNcF57EfY/preview" 
+              className="w-full h-full absolute inset-0"
+              allow="autoplay"
+              allowFullScreen
+            ></iframe>
+          </div>
         </motion.div>
 
       </div>
