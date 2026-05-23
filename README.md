@@ -8,6 +8,11 @@
 [![Composio](https://img.shields.io/badge/Composio-0.8.20-orange.svg)](https://composio.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+🏆 **Winner:** "Best Idea Award" at Composio Agents in Production Hackathon
+
+> **[🔥 View the Interactive Showcase Website (Next.js)](./showcase)**  
+> *A premium visual frontend designed to present the AI Recruiter pipeline, workflow architecture, and execution demo for portfolio and case-study purposes.*
+
 ---
 
 ## 📋 Table of Contents

@@ -46,3 +46,9 @@ output/*.png
 *.tmp
 *.temp
 *.log
+
+# Showcase
+showcase/node_modules/
+showcase/.next/
+showcase/out/
+showcase/build/
