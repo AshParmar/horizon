@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 import { Mail, FileText, Users, BrainCircuit, GitBranch, CalendarDays, TableProperties, FileSpreadsheet } from "lucide-react";
 
 const nodes = [
-  { id: 1, icon: Mail, label: "Gmail Monitor", desc: "Auto-downloads incoming resumes", type: "standard" },
-  { id: 2, icon: FileText, label: "Extract Resume", desc: "PDF/TXT parsed to structured data", type: "standard" },
-  { id: 3, icon: Users, label: "Enrich Profiles", desc: "LinkedIn API + Groq LLM fallback", type: "standard" },
-  { id: 4, icon: BrainCircuit, label: "AI Scoring", desc: "Groq evaluates vs job criteria", type: "standard" },
-  { id: 5, icon: GitBranch, label: "Decision Point", desc: "Score >= Threshold?", type: "decision" },
-  { id: 6, icon: CalendarDays, label: "Schedule Interviews", desc: "Creates Google Calendar events", type: "branch-yes" },
-  { id: 7, icon: TableProperties, label: "All Candidates DB", desc: "Google Sheets Export", type: "branch-no" },
-  { id: 8, icon: FileSpreadsheet, label: "Interview Schedule", desc: "Shortlisted candidates export", type: "branch-yes" },
+  { id: 1, icon: Mail, label: "Gmail-Monitor", desc: "Auto-downloads incoming resumes", type: "standard" },
+  { id: 2, icon: FileText, label: ".pdf extractor", desc: "PDF/TXT parsed to structured data", type: "standard" },
+  { id: 3, icon: Users, label: "LinkedIn + LLM Enricher", desc: "LinkedIn API + Groq LLM fallback", type: "standard" },
+  { id: 4, icon: BrainCircuit, label: "Profile Scorer", desc: "Groq evaluates vs job criteria", type: "standard" },
+  { id: 5, icon: GitBranch, label: "Recruitment Agent", desc: "Evaluates condition: Score > 6.5", type: "decision" },
+  { id: 6, icon: CalendarDays, label: "Scheduler", desc: "Creates Google Calendar events", type: "branch-yes" },
+  { id: 7, icon: TableProperties, label: "G Sheet 1 (All Candidates)", desc: "Export to Database / JSON", type: "branch-no" },
+  { id: 8, icon: FileSpreadsheet, label: "G Sheet 2 & G Calendar", desc: "Scheduled Interview output", type: "branch-yes" },
 ];
 
 export default function ArchitectureSection() {
@@ -108,7 +108,7 @@ export default function ArchitectureSection() {
               {/* YES Branch */}
               <div className="flex flex-col gap-6">
                 <div className="text-center font-mono text-sm text-[var(--accent-success)] mb-2 bg-[var(--accent-success)]/10 rounded-full py-1 px-3 w-max mx-auto border border-[var(--accent-success)]/20">
-                  ✅ Score &gt;= 5.0 (Shortlist)
+                  ✅ Score &gt; 6.5 (Shortlist)
                 </div>
                 {[nodes[5], nodes[7]].map((node, i) => (
                   <motion.div
@@ -133,7 +133,7 @@ export default function ArchitectureSection() {
               {/* NO Branch */}
               <div className="flex flex-col gap-6">
                 <div className="text-center font-mono text-sm text-[var(--text-tertiary)] mb-2 bg-white/5 rounded-full py-1 px-3 w-max mx-auto border border-white/10">
-                  ❌ Score &lt; 5.0 (Reject)
+                  ❌ Score &lt;= 6.5 (Reject)
                 </div>
                 {(() => {
                   const NodeIcon = nodes[6].icon;
@@ -174,18 +174,17 @@ export default function ArchitectureSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative w-full h-[600px] max-w-5xl mx-auto bg-black rounded-xl overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-gray-800 group"
+            className="relative w-full h-[550px] max-w-[780px] mx-auto rounded-xl overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-gray-800 group flex items-center justify-center bg-white"
           >
             {xml ? (
-              // We use CSS filter to invert colors and rotate hue so it perfectly matches the dark theme
+              // We force a white background so that the invert filter correctly flips it to pitch black with visible grid lines.
               <div 
                 className="mxgraph w-full h-full" 
-                style={{ filter: "invert(0.92) hue-rotate(180deg) brightness(1.1) contrast(0.95)" }}
+                style={{ backgroundColor: "#ffffff", filter: "invert(1) hue-rotate(180deg)" }}
                 data-mxgraph={JSON.stringify({
                   highlight: "#3b82f6",
-                  nav: true,
+                  nav: false,
                   resize: true,
-                  toolbar: "zoom layers lightbox",
                   xml: xml
                 })}
               ></div>
