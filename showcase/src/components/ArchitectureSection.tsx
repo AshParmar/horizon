@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, FileText, Users, BrainCircuit, GitBranch, CalendarDays, TableProperties, FileSpreadsheet } from "lucide-react";
 
@@ -15,19 +16,43 @@ const nodes = [
 ];
 
 export default function ArchitectureSection() {
+  const [xml, setXml] = useState("");
+
+  useEffect(() => {
+    // Fetch the draw.io XML data
+    fetch("/architecture.drawio")
+      .then((res) => res.text())
+      .then((data) => {
+        setXml(data);
+        
+        // Inject the draw.io viewer script only after the XML is ready
+        if (!document.getElementById("drawio-viewer-script")) {
+          const script = document.createElement("script");
+          script.id = "drawio-viewer-script";
+          script.src = "https://viewer.diagrams.net/js/viewer-static.min.js";
+          script.type = "text/javascript";
+          document.body.appendChild(script);
+        } else {
+          if (window.GraphViewer) {
+            window.GraphViewer.processElements();
+          }
+        }
+      });
+  }, []);
+
   return (
     <section id="pipeline" className="py-24 px-6 relative border-t border-[var(--border-color)] bg-[var(--bg-secondary)]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">State Machine Architecture</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">System Architecture</h2>
           <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
             Powered by LangGraph, the pipeline executes an 8-node state machine with conditional routing, orchestrating 4 Composio toolsets and Groq LLM inference.
           </p>
         </div>
 
-        {/* Pipeline Visualization */}
-        <div className="relative max-w-4xl mx-auto py-10">
-          
+        {/* 1. High Level Animated Pipeline Visualization */}
+        <div className="relative max-w-4xl mx-auto py-10 mb-24">
+          <h3 className="text-xl font-bold mb-10 text-center text-[var(--accent-primary)]">1. LangGraph State Machine</h3>
           <div className="flex flex-col items-center gap-6 relative z-10">
             {/* Sequential Steps (1-4) */}
             {nodes.slice(0, 4).map((node, i) => (
@@ -138,7 +163,53 @@ export default function ArchitectureSection() {
             </div>
           </div>
         </div>
+
+        {/* 2. Detailed Interactive Draw.io Viewer */}
+        <div className="relative pt-16 border-t border-[var(--border-color)]">
+          <h3 className="text-xl font-bold mb-6 text-center text-white">2. Detailed Systems Diagram</h3>
+          <p className="text-sm text-gray-400 text-center mb-10">
+            Interactive system design. You can pan, zoom, and inspect the different components.
+          </p>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative w-full h-[600px] max-w-5xl mx-auto bg-black rounded-xl overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-gray-800 group"
+          >
+            {xml ? (
+              // We use CSS filter to invert colors and rotate hue so it perfectly matches the dark theme
+              <div 
+                className="mxgraph w-full h-full" 
+                style={{ filter: "invert(0.92) hue-rotate(180deg) brightness(1.1) contrast(0.95)" }}
+                data-mxgraph={JSON.stringify({
+                  highlight: "#3b82f6",
+                  nav: true,
+                  resize: true,
+                  toolbar: "zoom layers lightbox",
+                  xml: xml
+                })}
+              ></div>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-gray-400 font-mono text-sm">
+                <div className="animate-pulse flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full border-2 border-t-[var(--accent-primary)] animate-spin"></div>
+                  Loading interactive diagram...
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );
+}
+
+// Add TypeScript declaration for the global GraphViewer object injected by Draw.io
+declare global {
+  interface Window {
+    GraphViewer?: {
+      processElements: () => void;
+    };
+  }
 }
